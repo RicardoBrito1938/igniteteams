@@ -6,9 +6,15 @@ import { Container } from "./styles";
 import { FlatList } from "react-native";
 import ListEmpty from "@components/ListEmpty";
 import Button from "@components/Button";
+import { useNavigation } from "@react-navigation/native";
 
 const Groups = () => {
-  const [groups, setGroups] = useState(["Ignite"]);
+  const [groups, setGroups] = useState<string[]>([]);
+  const navigation = useNavigation();
+
+  const handleNewGroup = () => {
+    navigation.navigate("NewGroup");
+  };
 
   return (
     <Container>
@@ -25,7 +31,7 @@ const Groups = () => {
         )}
       />
 
-      <Button title="Create new team" />
+      <Button title="Create new team" onPress={handleNewGroup} />
     </Container>
   );
 };
